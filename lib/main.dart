@@ -1,7 +1,9 @@
+import 'package:cet301finalproject_bound/pages/home.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-void main(){
+
+void main() {
   runApp(MyApp());
 }
 
@@ -11,12 +13,12 @@ class MyApp extends StatelessWidget{
     return MaterialApp(
       title:'cet301finalproject_bound',
       debugShowCheckedModeBanner: false,
+      theme: ThemeData(
+        primaryColor: Color(0xff1c2833),
+        accentColor: Color(0xff424242),
+      ),
       home: Scaffold(
-        appBar: AppBar(title: Text("Project"),) ,
-        body: Container(alignment: Alignment.center,color: Colors.blueGrey,
-          child: Text("Working on the project, I will probably complete the project late for that I am sorry, I would really appreciate your understanding.",
-            style: TextStyle(color: Colors.white), textAlign: TextAlign.justify,),
-        ),
+        body: Home(),
       ),
     );
   }
