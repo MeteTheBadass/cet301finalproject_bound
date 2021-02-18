@@ -1,3 +1,8 @@
+import 'package:cet301finalproject_bound/pages/activity_feed.dart';
+import 'package:cet301finalproject_bound/pages/profile.dart';
+import 'package:cet301finalproject_bound/pages/search.dart';
+import 'package:cet301finalproject_bound/pages/timeline.dart';
+import 'package:cet301finalproject_bound/pages/upload.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
@@ -11,37 +16,103 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   bool isAuth=false;
-
+  PageController pageController;
+  int pageIndex=0;
   @override
   void initState(){
     super.initState();
+    pageController=PageController();
     googleSignIn.onCurrentUserChanged.listen((account){
-      if(account!=null)
-        {
-          print("User $account signed in");
-              setState(() {
-                isAuth=true;
-              });
-        }
-      else{
-        setState(() {
-          isAuth=false;
-        });
-      }
+      signInControl(account);
+    },onError: (error){
+      print("Error sign in: $error");
     });
+
+    googleSignIn.signInSilently(suppressErrors: false).then((account){
+      signInControl(account);
+    }).catchError((error){
+      print("Error sign in: $error");
+    });
+  }
+
+  signInControl(GoogleSignInAccount account){
+    if(account!=null)
+    {
+      print("User $account signed in");
+      setState(() {
+        isAuth=true;
+      });
+    }
+    else{
+      setState(() {
+        isAuth=false;
+      });
+    }
+  }
+
+  onPageChanged(int pageIndex)
+  {
+    setState(() {
+      this.pageIndex=pageIndex;
+    });
+  }
+
+  @override
+  void dispose(){
+    pageController.dispose();
+    super.dispose();
+  }
+
+  onTap(int pageIndex)
+  {
+    pageController.jumpToPage(pageIndex);
   }
 
   login(){
     googleSignIn.signIn();
   }
 
-  buildAuthScreen(){
-    return Container(alignment: Alignment.center,
-      child: Text("Authenticated",style: TextStyle(fontFamily: "NR",fontSize: 50),),
+  logut(){
+    var currentUser=googleSignIn.currentUser;
+    print("User $currentUser signed out");
+    googleSignIn.signOut();
+  }
+  Scaffold buildAuthScreen(){
+    return Scaffold(
+        body:PageView(
+          children: <Widget>[
+            ActivityFeed(),
+            Timeline(),
+            Upload(),
+            Profile(),
+            Search(),
+          ], controller: pageController, onPageChanged: onPageChanged, physics: NeverScrollableScrollPhysics(),
+        ),
+      bottomNavigationBar: CupertinoTabBar(
+        currentIndex: pageIndex,
+        onTap: onTap,
+        activeColor: Theme.of(context).primaryColor,
+        items: [
+          BottomNavigationBarItem(icon: Icon(Icons.timeline)),
+          BottomNavigationBarItem(icon: Icon(Icons.notifications_active)),
+          BottomNavigationBarItem(icon: Icon(Icons.photo_camera)),
+          BottomNavigationBarItem(icon: Icon(Icons.search)),
+          BottomNavigationBarItem(icon: Icon(Icons.account_box)),
+        ],
+      ),
+
+      /*Container(alignment: Alignment.center,color: Colors.blueGrey,
+      child: RaisedButton(child:Text("Log out",style: TextStyle(fontFamily: "NR",fontSize: 50),),
+      onPressed: (){
+        logut();
+      }
+    )
+    )*/
     );
   }
-  buildUnauthScreen(){
-    return Container(alignment: Alignment.center,decoration: BoxDecoration(
+  Scaffold buildUnauthScreen(){
+    return Scaffold(
+        body: Container(alignment: Alignment.center,decoration: BoxDecoration(
       gradient: LinearGradient(
         begin: Alignment.topCenter,
         end: Alignment.bottomCenter,
@@ -66,7 +137,7 @@ class _HomeState extends State<Home> {
           ),),
         ],
       ),
-    );
+    ),);
   }
 
   @override
