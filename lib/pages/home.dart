@@ -72,7 +72,7 @@ class _HomeState extends State<Home> {
     googleSignIn.signIn();
   }
 
-  logut(){
+  logout(){
     var currentUser=googleSignIn.currentUser;
     print("User $currentUser signed out");
     googleSignIn.signOut();
@@ -81,11 +81,11 @@ class _HomeState extends State<Home> {
     return Scaffold(
         body:PageView(
           children: <Widget>[
-            ActivityFeed(),
             Timeline(),
-            Upload(),
-            Profile(),
             Search(),
+            Upload(),
+            ActivityFeed(),
+            Profile(),
           ], controller: pageController, onPageChanged: onPageChanged, physics: NeverScrollableScrollPhysics(),
         ),
       bottomNavigationBar: CupertinoTabBar(
@@ -93,10 +93,10 @@ class _HomeState extends State<Home> {
         onTap: onTap,
         activeColor: Theme.of(context).primaryColor,
         items: [
-          BottomNavigationBarItem(icon: Icon(Icons.timeline)),
-          BottomNavigationBarItem(icon: Icon(Icons.notifications_active)),
-          BottomNavigationBarItem(icon: Icon(Icons.photo_camera)),
+          BottomNavigationBarItem(icon: Icon(Icons.home)),
           BottomNavigationBarItem(icon: Icon(Icons.search)),
+          BottomNavigationBarItem(icon: Icon(Icons.add_box,size: 50,)),
+          BottomNavigationBarItem(icon: Icon(Icons.notifications_active)),
           BottomNavigationBarItem(icon: Icon(Icons.account_box)),
         ],
       ),
@@ -104,7 +104,7 @@ class _HomeState extends State<Home> {
       /*Container(alignment: Alignment.center,color: Colors.blueGrey,
       child: RaisedButton(child:Text("Log out",style: TextStyle(fontFamily: "NR",fontSize: 50),),
       onPressed: (){
-        logut();
+        logout();
       }
     )
     )*/

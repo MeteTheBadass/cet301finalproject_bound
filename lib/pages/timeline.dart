@@ -1,3 +1,4 @@
+import 'package:cet301finalproject_bound/widgets/header.dart';
 import 'package:flutter/material.dart';
 
 class Timeline extends StatefulWidget {
@@ -8,6 +9,9 @@ class Timeline extends StatefulWidget {
 class _TimelineState extends State<Timeline> {
   @override
   Widget build(context) {
-    return Text("Timeline");
+    return Scaffold(
+      appBar: header(context, titleText: "Bound", fontFamilyText: "MB",fontSize: 45),
+      body: Text("Timeline"),
+    );
   }
 }

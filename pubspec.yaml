@@ -59,11 +59,13 @@ flutter:
   # the material Icons class.
   uses-material-design: true
   fonts:
-    - family: NR
+    - family: MB
       fonts:
-        - asset: assets/fonts/NR_bold.ttf
-        - asset: assets/fonts/NR_extraLight.ttf
-        - asset: assets/fonts/NR_regular.ttf
+        - asset: assets/fonts/MB.ttf
+
+    - family: ML
+      fonts:
+        - asset: assets/fonts/ML.ttf
   assets:
     - assets/images/home_empty.svg
     - assets/images/home_filled.svg
