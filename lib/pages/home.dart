@@ -116,7 +116,7 @@ class _HomeState extends State<Home> {
         body: PageView(
           children: <Widget>[
             //Timeline(),
-            Container(alignment: Alignment.center,color: Colors.blueGrey,
+            Container(alignment: Alignment.center,color: Theme.of(context).accentColor,
                 child:Column(children: [
                   SizedBox(
                     height: 50,
