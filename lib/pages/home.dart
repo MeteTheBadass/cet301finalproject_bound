@@ -1,4 +1,5 @@
 import 'package:cet301finalproject_bound/main.dart';
+import 'package:cet301finalproject_bound/models/user.dart';
 import 'package:cet301finalproject_bound/pages/activity_feed.dart';
 import 'package:cet301finalproject_bound/pages/profile.dart';
 import 'package:cet301finalproject_bound/pages/search.dart';
@@ -9,9 +10,11 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:cet301finalproject_bound/pages/create_account.dart';
+import 'package:cet301finalproject_bound/widgets/progress.dart';
 
 final GoogleSignIn googleSignIn =GoogleSignIn();
 final DateTime timeStamp=DateTime.now();
+User currentUser;
 
 class Home extends StatefulWidget {
   @override
@@ -32,7 +35,6 @@ class _HomeState extends State<Home> {
     }, onError: (error) {
       print("Error sign in: $error");
     });
-
     googleSignIn.signInSilently(suppressErrors: false).then((account) {
       signInControl(account);
     }).catchError((error) {
@@ -57,13 +59,14 @@ class _HomeState extends State<Home> {
 
   createUserFireBase() async {
     final GoogleSignInAccount user = googleSignIn.currentUser;
-    final DocumentSnapshot doc = await userRef.doc(user.id).get();
+    DocumentSnapshot doc = await userRef.doc(user.id).get();
     if (!doc.exists) {
       final username = await Navigator.push(
           context, MaterialPageRoute(builder: (context) => CreateAccount()));
       userRef.doc(user.id).set({
         "id": user.id,
         "username": username,
+        "displayName": user.displayName,
         "photoURL": user.photoUrl,
         "email": user.email,
         "bio": "",
@@ -72,7 +75,9 @@ class _HomeState extends State<Home> {
           .catchError((error) {
         print("Error: $error");
       });
+      doc=await userRef.doc(user.id).get();
     }
+    currentUser=User.fromDocument(doc);
   }
 
     onPageChanged(int pageIndex) {
@@ -80,6 +85,10 @@ class _HomeState extends State<Home> {
         this.pageIndex = pageIndex;
       });
     }
+    test(){
+    print(currentUser);
+    print("Current User's username is ${currentUser.username}");}
+
 
     @override
     void dispose() {
@@ -108,11 +117,25 @@ class _HomeState extends State<Home> {
           children: <Widget>[
             //Timeline(),
             Container(alignment: Alignment.center,color: Colors.blueGrey,
-                child: RaisedButton(child:Text("Log out",style: TextStyle(fontFamily: "NR",fontSize: 50),),
-                    onPressed: (){
-                      logout();
-                    }
-                )
+                child:Column(children: [
+                  SizedBox(
+                    height: 50,
+                  ),
+                  RaisedButton(child:Text("Log out",style: TextStyle(fontFamily: "NR",fontSize: 50),),
+                      onPressed: (){
+                        logout();
+                      }
+                  ),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  RaisedButton(child:Text("Fetch data from Firebase \n to Debug Console Button",style: TextStyle(fontFamily: "NR",fontSize: 20),),
+                      onPressed: (){
+                        test();
+                      }
+                  ),
+
+                ],)
             ),
             Search(),
             Upload(),
