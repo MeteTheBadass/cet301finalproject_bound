@@ -3,14 +3,13 @@ import 'package:cet301finalproject_bound/models/user.dart';
 import 'package:cet301finalproject_bound/pages/activity_feed.dart';
 import 'package:cet301finalproject_bound/pages/profile.dart';
 import 'package:cet301finalproject_bound/pages/search.dart';
-import 'package:cet301finalproject_bound/pages/timeline.dart';
 import 'package:cet301finalproject_bound/pages/upload.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:cet301finalproject_bound/pages/create_account.dart';
-import 'package:cet301finalproject_bound/widgets/progress.dart';
+
 
 final GoogleSignIn googleSignIn =GoogleSignIn();
 final DateTime timeStamp=DateTime.now();

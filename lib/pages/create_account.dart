@@ -1,7 +1,5 @@
 import 'dart:async';
-
 import 'package:cet301finalproject_bound/widgets/header.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 class CreateAccount extends StatefulWidget {

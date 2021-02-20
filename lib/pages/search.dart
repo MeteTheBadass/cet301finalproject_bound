@@ -4,11 +4,7 @@ import 'package:cet301finalproject_bound/main.dart';
 import 'package:cet301finalproject_bound/models/user.dart';
 import 'package:cet301finalproject_bound/widgets/progress.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import 'package:async/async.dart';
-
 class Search extends StatefulWidget {
   @override
   _SearchState createState() => _SearchState();

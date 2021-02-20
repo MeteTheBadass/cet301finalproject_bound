@@ -1,7 +1,4 @@
-import 'dart:async';
-
 import 'package:cet301finalproject_bound/widgets/header.dart';
-import 'package:cet301finalproject_bound/widgets/progress.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
