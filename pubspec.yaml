@@ -23,6 +23,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  flutter_launcher_icons: ^0.8.1
   firebase_core: ^0.7.0
   cloud_firestore: ^0.16.0
   image_picker: ^0.6.7+22
@@ -48,6 +49,10 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
 
+flutter_icons:
+  image_path: "assets/images/icon.png"
+  android: true
+  ios: true
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
 
@@ -70,6 +75,8 @@ flutter:
     - assets/images/google_signin_button.png
     - assets/images/search.png
     - assets/images/upload.png
+    - assets/images/icon.png
+    - assets/images/iconInApp.png
 
   # To add assets to your application, add an assets section, like this:
   # assets:

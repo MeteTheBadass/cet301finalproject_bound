@@ -17,7 +17,7 @@ class MyApp extends StatelessWidget{
   @override
   Widget build(BuildContext context){
     return MaterialApp(
-      title:'cet301finalproject_bound',
+      title:'Bound',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         primaryColor: Color(0xff1c2833),

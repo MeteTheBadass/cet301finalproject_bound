@@ -178,10 +178,10 @@ class _HomeState extends State<Home> {
           child: Column(mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Text("Bo nd", style: TextStyle(
-                  fontFamily: "NR", fontSize: 80, color: Colors.white),),
-              Text("  U  ", style: TextStyle(
-                  fontFamily: "NR", fontSize: 80, color: Colors.white),),
+              CircleAvatar(radius: 120,backgroundColor: Colors.transparent,
+                child: Image.asset("assets/images/iconInApp.png"),
+              ),
+              SizedBox(height: 50,),
               GestureDetector(onTap: () {
                 login();
               }, child: Container(
