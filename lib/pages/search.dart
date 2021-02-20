@@ -77,7 +77,7 @@ class _SearchState extends State<Search> {
   }
   @override
   Widget build(BuildContext context) {
-    return Scaffold(backgroundColor: Theme.of(context).accentColor.withOpacity(0.5),
+    return Scaffold(backgroundColor: Theme.of(context).accentColor,
       appBar: buildSearchField(),
       body: searchResults==null? buildNoContent():buildSearchResults(),
     );
@@ -103,7 +103,7 @@ class UserResult extends StatelessWidget {
             subtitle: Text(user.username,style: TextStyle(color: Colors.white),),
           ),
           ),
-        SizedBox(height: 3,child: Container(color: Colors.deepOrange[400],),),
+        SizedBox(height: 3,child: Container(color: Colors.deepOrange,),),
         ]
       ),
     );

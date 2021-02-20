@@ -67,10 +67,7 @@ flutter:
       fonts:
         - asset: assets/fonts/ML.ttf
   assets:
-    - assets/images/home_empty.svg
-    - assets/images/home_filled.svg
     - assets/images/google_signin_button.png
-    - assets/images/search.svg
     - assets/images/search.png
     - assets/images/upload.png
 

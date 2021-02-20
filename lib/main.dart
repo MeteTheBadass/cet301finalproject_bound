@@ -22,6 +22,7 @@ class MyApp extends StatelessWidget{
       theme: ThemeData(
         primaryColor: Color(0xff1c2833),
         accentColor: Color(0xff424242),
+        fontFamily: "ML",
       ),
       home: Home(),
     );

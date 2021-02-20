@@ -137,7 +137,7 @@ class _HomeState extends State<Home> {
                 ],)
             ),
             Search(),
-            Upload(),
+            Upload(currentUser:currentUser),
             ActivityFeed(),
             Profile(),
           ],
@@ -145,12 +145,10 @@ class _HomeState extends State<Home> {
           onPageChanged: onPageChanged,
           physics: NeverScrollableScrollPhysics(),
         ),
-        bottomNavigationBar: CupertinoTabBar(
+        bottomNavigationBar: CupertinoTabBar(backgroundColor: Theme.of(context).primaryColor,
           currentIndex: pageIndex,
           onTap: onTap,
-          activeColor: Theme
-              .of(context)
-              .primaryColor,
+          activeColor: Colors.deepOrange,
           items: [
             BottomNavigationBarItem(icon: Icon(Icons.home)),
             BottomNavigationBarItem(icon: Icon(Icons.search)),
